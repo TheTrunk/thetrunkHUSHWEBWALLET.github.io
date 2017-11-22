@@ -38460,25 +38460,33 @@ curve.edwards = __webpack_require__(395);
 /***/ (function(module, exports) {
 
 /*
-config.js - Configuration for Hush Coin IMPORTANT
+config.js - Configuration for Hush Coin IMPORTANT, chainparams
 */
 
 module.exports = {
   mainnet: {
-    messagePrefix: 'Hush main net', //TODO2 ASK
+    messagePrefix: 'Hush mainnet', 
     bip32: {
       public: '0488b21e',
       private: '0488ade4'
     },
-    pubKeyHash: '1cb8', //2089
-    scriptHash: '1cbd', //2096
-    zcPaymentAddressHash: '169a', // Private z-address TODO2 ASK, refactor zc??? 169a
-    zcSpendingKeyHash: 'ab36', // Spending key ab36
+    pubKeyHash: '1cb8', 
+    scriptHash: '1cbd', 
+    zcPaymentAddressHash: '169a', 
+    zcSpendingKeyHash: 'ab36', 
     wif: '80'
   },
-  testnet: { //TODO2 ASK
-    wif: 'ef',
-    pubKeyHash: '2098'
+  testnet: {
+      messagePrefix: 'Hush testnet', 
+    bip32: {
+      public: '043587cf',
+      private: '04358394'
+    },
+    pubKeyHash: '1d25',
+    scriptHash: '1cba',
+    zcPaymentAddressHash: '16b6', 
+    zcSpendingKeyHash: 'ac08',
+    wif: 'ef'
   }
 };
 
@@ -51727,10 +51735,10 @@ var ZWallet = function (_React$Component10) {
       _settings.useTestNet = !_settings.useTestNet;
 
       if (_settings.useTestNet) {
-        _settings.insightAPI = 'https://aayanl.tech/insight-api-zen/'; //TODO2 hush testnet api
-        _settings.explorerURL = 'https://aayanl.tech/'; //explorer testnet
+        _settings.insightAPI = 'https://explorer.testnet.myhush.network/api'; //TODO2 hush testnet api not up yet
+        _settings.explorerURL = 'https://explorer.testnet.myhush.network/'; //explorer testnet not up yet
       } else {
-        _settings.insightAPI = 'https://explorer.myhush.network/api'; //api normal
+        _settings.insightAPI = 'https://explorer.myhush.network/api';
         _settings.explorerURL = 'https://explorer.myhush.network/';
       }
 
