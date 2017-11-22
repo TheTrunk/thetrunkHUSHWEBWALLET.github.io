@@ -38468,8 +38468,7 @@ module.exports = {
     messagePrefix: 'Hush main net', //TODO2 ASK
     bip32: {
       public: '0488b21e',
-      //private: '0488ade4',
-      private: '05358394'
+      private: '0488ade4'
     },
     pubKeyHash: '1cb8', //2089
     scriptHash: '1cbd', //2096
