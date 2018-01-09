@@ -1,6 +1,6 @@
 {
   "name": "myhushwallet",
-  "version": "v2.0.8",
+  "version": "v2.1.0",
   "description": "Secure Hush wallet online",
   "main": "index.js",
   "repository": "https://github.com/thetrunk/myhushwallet.git",
@@ -14,8 +14,8 @@
   "dependencies": {
     "axios": "^0.16.2",
     "babel-preset-env": "^1.6.0",
-    "bip32-utils": "^0.10.0",
-    "bitcoinjs-lib": "^3.1.1",
+    "bip32-utils": "git://github.com/TheTrunk/bip32-utils#master",
+    "bitcoinjs-lib": "git://github.com/TheTrunk/bitcoinjs-lib#master",
     "bluebird": "^3.5.0",
     "bootstrap": "^4.0.0-alpha.6",
     "bs58": "^4.0.1",

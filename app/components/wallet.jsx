@@ -268,7 +268,7 @@ class ZWalletUnlockKey extends React.Component {
             </InputGroupButton>
             <Input
               type={this.state.showPassword ? "text" : "password"}
-              maxLength="64"
+              maxLength="256"
               onChange={(e) => this.setState({secretPhrase: e.target.value})}
               placeholder="Secret phrase. e.g. cash cow money heros cardboard money bag late green"
             />                        
