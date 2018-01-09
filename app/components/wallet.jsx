@@ -1147,8 +1147,8 @@ export default class ZWallet extends React.Component {
     _settings.useTestNet = !_settings.useTestNet
 
     if (_settings.useTestNet){
-        _settings.insightAPI = 'https://explorer.testnet.myhush.org/api'
-      _settings.explorerURL = 'https://explorer.testnet.myhush.org/'
+        _settings.insightAPI = 'https://testnet.myhush.org/api'
+      _settings.explorerURL = 'https://testnet.myhush.org/'
     }
     else{
         _settings.insightAPI = 'https://explorer.myhush.org/api'
