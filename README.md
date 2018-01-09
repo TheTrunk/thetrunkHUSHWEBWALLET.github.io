@@ -8,7 +8,7 @@ Officially at: https://wallet.myhush.org
 
 
 # Running locally
-Download index.html, faq.html, guide.html, favicon.ico, Javascript folder (js) and double click `index.html`
+Download dist folder which contains: index.html, faq.html, guide.html, favicon.ico, Javascript folder (js) and double click `index.html`
 
 
 # Dev
