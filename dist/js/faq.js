@@ -30695,7 +30695,7 @@ var ZFooter = function (_React$Component) {
                 'Suggestions? ',
                 _react2.default.createElement(
                   'a',
-                  { href: 'https://myhush.org/#contact' },
+                  { href: 'mailto:contact@myhush.org' },
                   'Contact us'
                 ),
                 ' or join our ',

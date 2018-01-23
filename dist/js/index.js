@@ -38019,7 +38019,7 @@ var ZFooter = function (_React$Component) {
                 'Suggestions? ',
                 _react2.default.createElement(
                   'a',
-                  { href: 'https://myhush.org/#contact' },
+                  { href: 'mailto:contact@myhush.org' },
                   'Contact us'
                 ),
                 ' or join our ',
@@ -38800,7 +38800,8 @@ function decrypt (data, password) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(Buffer) {
+
+var Buffer = __webpack_require__(8).Buffer
 
 // Number.MAX_SAFE_INTEGER
 var MAX_SAFE_INTEGER = 9007199254740991
@@ -38812,7 +38813,7 @@ function checkUInt53 (n) {
 function encode (number, buffer, offset) {
   checkUInt53(number)
 
-  if (!buffer) buffer = new Buffer(encodingLength(number))
+  if (!buffer) buffer = Buffer.allocUnsafe(encodingLength(number))
   if (!Buffer.isBuffer(buffer)) throw new TypeError('buffer must be a Buffer instance')
   if (!offset) offset = 0
 
@@ -38890,7 +38891,6 @@ function encodingLength (number) {
 
 module.exports = { encode: encode, decode: decode, encodingLength: encodingLength }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9).Buffer))
 
 /***/ }),
 /* 251 */
@@ -50083,13 +50083,14 @@ var ZWalletUnlockKey = function (_React$Component3) {
     _this3.loadWalletDat = _this3.loadWalletDat.bind(_this3);
     _this3.toggleShowPassword = _this3.toggleShowPassword.bind(_this3);
     _this3.unlockPrivateKeys = _this3.unlockPrivateKeys.bind(_this3);
+    _this3.toggleUseLimChars = _this3.toggleUseLimChars.bind(_this3);
 
     _this3.state = {
       showPassword: false,
       secretPhrase: '',
       invalidPrivateKey: false,
       secretPhraseTooShort: false,
-
+      useLimChars: false,
       // Style for input button
       inputFileStyle: {
         WebkitAppearance: 'button',
@@ -50100,6 +50101,13 @@ var ZWalletUnlockKey = function (_React$Component3) {
   }
 
   _createClass(ZWalletUnlockKey, [{
+    key: 'toggleUseLimChars',
+    value: function toggleUseLimChars() {
+      this.setState({
+        useLimChars: !this.state.useLimChars
+      });
+    }
+  }, {
     key: 'toggleShowPassword',
     value: function toggleShowPassword() {
       this.setState({
@@ -50216,7 +50224,7 @@ var ZWalletUnlockKey = function (_React$Component3) {
               _react2.default.createElement(
                 _reactstrap.FormText,
                 { color: 'muted' },
-                'For Windows, it should be in %APPDATA%/Roaming/Hush',
+                'For Windows, it should be in %APPDATA%/Hush',
                 _react2.default.createElement('br', null),
                 'For Mac/Linux, it should be in ~/.Hush'
               )
@@ -50309,12 +50317,23 @@ var ZWalletUnlockKey = function (_React$Component3) {
             ),
             _react2.default.createElement(_reactstrap.Input, {
               type: this.state.showPassword ? "text" : "password",
-              maxLength: '256',
-              onChange: function onChange(e) {
+              maxLength: this.state.useLimChars ? "64" : "256" //"256" ZWallet
+              , onChange: function onChange(e) {
                 return _this5.setState({ secretPhrase: e.target.value });
               },
               placeholder: 'Secret phrase. e.g. cash cow money heros cardboard money bag late green'
-            })
+            }),
+            _react2.default.createElement(
+              _reactstrap.InputGroupButton,
+              null,
+              _react2.default.createElement(
+                _reactstrap.Button,
+                { id: 423,
+                  onClick: this.toggleUseLimChars
+                },
+                this.state.useLimChars ? "64" : "256"
+              )
+            )
           ),
           _react2.default.createElement(
             'div',
@@ -50421,7 +50440,7 @@ var ZWalletSettings = function (_React$Component4) {
           null,
           _react2.default.createElement(
             _reactstrap.Label,
-            null,
+            { check: true },
             _react2.default.createElement(_reactstrap.Input, {
               disabled: !(this.props.publicAddresses === null),
               defaultChecked: this.props.settings.useTestNet, type: 'checkbox',
@@ -50986,7 +51005,7 @@ var ZSendHUSH = function (_React$Component6) {
                   null,
                   'To Address'
                 ),
-                _react2.default.createElement(_reactstrap.Input, { onChange: this.handleUpdateRecipientAddress, placeholder: 'e.g t1UDhNq2aEqvxEbPzcRM8n2QJV8YJ664rXJ' })
+                _react2.default.createElement(_reactstrap.Input, { onChange: this.handleUpdateRecipientAddress, placeholder: 'e.g t1h6kmaQwcuyejDLazT3TNZfV8EEtCzHRhc' })
               ),
               _react2.default.createElement(
                 _reactstrap.InputGroup,
@@ -51006,7 +51025,7 @@ var ZSendHUSH = function (_React$Component6) {
                   null,
                   'Fee'
                 ),
-                _react2.default.createElement(_reactstrap.Input, { onChange: this.handleUpdateFee, placeholder: 'e.g 0.001' })
+                _react2.default.createElement(_reactstrap.Input, { onChange: this.handleUpdateFee, placeholder: 'e.g 0.0001' })
               ),
               _react2.default.createElement('br', null),
               _react2.default.createElement(
@@ -58553,7 +58572,7 @@ module.exports = function(module) {
 /* 404 */
 /***/ (function(module, exports) {
 
-module.exports = {"_args":[["elliptic@6.4.0","C:\\Users\\Tessie\\Source\\Repos\\myhushwallet"]],"_from":"elliptic@6.4.0","_id":"elliptic@6.4.0","_inBundle":false,"_integrity":"sha1-ysmvh2LIWDYYcAPI3+GT5eLq5d8=","_location":"/elliptic","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"elliptic@6.4.0","name":"elliptic","escapedName":"elliptic","rawSpec":"6.4.0","saveSpec":null,"fetchSpec":"6.4.0"},"_requiredBy":["/browserify-sign","/create-ecdh","/secp256k1"],"_resolved":"https://registry.npmjs.org/elliptic/-/elliptic-6.4.0.tgz","_spec":"6.4.0","_where":"C:\\Users\\Tessie\\Source\\Repos\\myhushwallet","author":{"name":"Fedor Indutny","email":"fedor@indutny.com"},"bugs":{"url":"https://github.com/indutny/elliptic/issues"},"dependencies":{"bn.js":"^4.4.0","brorand":"^1.0.1","hash.js":"^1.0.0","hmac-drbg":"^1.0.0","inherits":"^2.0.1","minimalistic-assert":"^1.0.0","minimalistic-crypto-utils":"^1.0.0"},"description":"EC cryptography","devDependencies":{"brfs":"^1.4.3","coveralls":"^2.11.3","grunt":"^0.4.5","grunt-browserify":"^5.0.0","grunt-cli":"^1.2.0","grunt-contrib-connect":"^1.0.0","grunt-contrib-copy":"^1.0.0","grunt-contrib-uglify":"^1.0.1","grunt-mocha-istanbul":"^3.0.1","grunt-saucelabs":"^8.6.2","istanbul":"^0.4.2","jscs":"^2.9.0","jshint":"^2.6.0","mocha":"^2.1.0"},"files":["lib"],"homepage":"https://github.com/indutny/elliptic","keywords":["EC","Elliptic","curve","Cryptography"],"license":"MIT","main":"lib/elliptic.js","name":"elliptic","repository":{"type":"git","url":"git+ssh://git@github.com/indutny/elliptic.git"},"scripts":{"jscs":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","jshint":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","lint":"npm run jscs && npm run jshint","test":"npm run lint && npm run unit","unit":"istanbul test _mocha --reporter=spec test/index.js","version":"grunt dist && git add dist/"},"version":"6.4.0"}
+module.exports = {"_args":[["elliptic@6.4.0","C:\\Users\\Tadeas\\Source\\Repos\\myhushwallet"]],"_from":"elliptic@6.4.0","_id":"elliptic@6.4.0","_inBundle":false,"_integrity":"sha1-ysmvh2LIWDYYcAPI3+GT5eLq5d8=","_location":"/elliptic","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"elliptic@6.4.0","name":"elliptic","escapedName":"elliptic","rawSpec":"6.4.0","saveSpec":null,"fetchSpec":"6.4.0"},"_requiredBy":["/browserify-sign","/create-ecdh"],"_resolved":"https://registry.npmjs.org/elliptic/-/elliptic-6.4.0.tgz","_spec":"6.4.0","_where":"C:\\Users\\Tadeas\\Source\\Repos\\myhushwallet","author":{"name":"Fedor Indutny","email":"fedor@indutny.com"},"bugs":{"url":"https://github.com/indutny/elliptic/issues"},"dependencies":{"bn.js":"^4.4.0","brorand":"^1.0.1","hash.js":"^1.0.0","hmac-drbg":"^1.0.0","inherits":"^2.0.1","minimalistic-assert":"^1.0.0","minimalistic-crypto-utils":"^1.0.0"},"description":"EC cryptography","devDependencies":{"brfs":"^1.4.3","coveralls":"^2.11.3","grunt":"^0.4.5","grunt-browserify":"^5.0.0","grunt-cli":"^1.2.0","grunt-contrib-connect":"^1.0.0","grunt-contrib-copy":"^1.0.0","grunt-contrib-uglify":"^1.0.1","grunt-mocha-istanbul":"^3.0.1","grunt-saucelabs":"^8.6.2","istanbul":"^0.4.2","jscs":"^2.9.0","jshint":"^2.6.0","mocha":"^2.1.0"},"files":["lib"],"homepage":"https://github.com/indutny/elliptic","keywords":["EC","Elliptic","curve","Cryptography"],"license":"MIT","main":"lib/elliptic.js","name":"elliptic","repository":{"type":"git","url":"git+ssh://git@github.com/indutny/elliptic.git"},"scripts":{"jscs":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","jshint":"jscs benchmarks/*.js lib/*.js lib/**/*.js lib/**/**/*.js test/index.js","lint":"npm run jscs && npm run jshint","test":"npm run lint && npm run unit","unit":"istanbul test _mocha --reporter=spec test/index.js","version":"grunt dist && git add dist/"},"version":"6.4.0"}
 
 /***/ }),
 /* 405 */
@@ -62961,7 +62980,7 @@ module.exports = Signature;
 /* 426 */
 /***/ (function(module, exports) {
 
-module.exports = {"_args":[["bigi@1.4.2","C:\\Users\\Tessie\\Source\\Repos\\myhushwallet"]],"_from":"bigi@1.4.2","_id":"bigi@1.4.2","_inBundle":false,"_integrity":"sha1-nGZalfiLiwj8Bc/XMfVhhZ1yWCU=","_location":"/bigi","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"bigi@1.4.2","name":"bigi","escapedName":"bigi","rawSpec":"1.4.2","saveSpec":null,"fetchSpec":"1.4.2"},"_requiredBy":["/bitcoinjs-lib","/ecurve","/hushjs"],"_resolved":"https://registry.npmjs.org/bigi/-/bigi-1.4.2.tgz","_spec":"1.4.2","_where":"C:\\Users\\Tessie\\Source\\Repos\\myhushwallet","bugs":{"url":"https://github.com/cryptocoinjs/bigi/issues"},"dependencies":{},"description":"Big integers.","devDependencies":{"coveralls":"^2.11.2","istanbul":"^0.3.5","jshint":"^2.5.1","mocha":"^2.1.0","mochify":"^2.1.0"},"homepage":"https://github.com/cryptocoinjs/bigi#readme","keywords":["cryptography","math","bitcoin","arbitrary","precision","arithmetic","big","integer","int","number","biginteger","bigint","bignumber","decimal","float"],"main":"./lib/index.js","name":"bigi","repository":{"url":"git+https://github.com/cryptocoinjs/bigi.git","type":"git"},"scripts":{"browser-test":"mochify --wd -R spec","coverage":"istanbul cover ./node_modules/.bin/_mocha -- --reporter list test/*.js","coveralls":"npm run-script coverage && node ./node_modules/.bin/coveralls < coverage/lcov.info","jshint":"jshint --config jshint.json lib/*.js ; true","test":"_mocha -- test/*.js","unit":"mocha"},"testling":{"files":"test/*.js","harness":"mocha","browsers":["ie/9..latest","firefox/latest","chrome/latest","safari/6.0..latest","iphone/6.0..latest","android-browser/4.2..latest"]},"version":"1.4.2"}
+module.exports = {"_from":"bigi@^1.4.0","_id":"bigi@1.4.2","_inBundle":false,"_integrity":"sha1-nGZalfiLiwj8Bc/XMfVhhZ1yWCU=","_location":"/bigi","_phantomChildren":{},"_requested":{"type":"range","registry":true,"raw":"bigi@^1.4.0","name":"bigi","escapedName":"bigi","rawSpec":"^1.4.0","saveSpec":null,"fetchSpec":"^1.4.0"},"_requiredBy":["/bitcoinjs-lib","/ecurve","/hushjs"],"_resolved":"https://registry.npmjs.org/bigi/-/bigi-1.4.2.tgz","_shasum":"9c665a95f88b8b08fc05cfd731f561859d725825","_spec":"bigi@^1.4.0","_where":"C:\\Users\\Tadeas\\Source\\Repos\\myhushwallet\\node_modules\\bitcoinjs-lib","bugs":{"url":"https://github.com/cryptocoinjs/bigi/issues"},"bundleDependencies":false,"dependencies":{},"deprecated":false,"description":"Big integers.","devDependencies":{"coveralls":"^2.11.2","istanbul":"^0.3.5","jshint":"^2.5.1","mocha":"^2.1.0","mochify":"^2.1.0"},"homepage":"https://github.com/cryptocoinjs/bigi#readme","keywords":["cryptography","math","bitcoin","arbitrary","precision","arithmetic","big","integer","int","number","biginteger","bigint","bignumber","decimal","float"],"main":"./lib/index.js","name":"bigi","repository":{"url":"git+https://github.com/cryptocoinjs/bigi.git","type":"git"},"scripts":{"browser-test":"mochify --wd -R spec","coverage":"istanbul cover ./node_modules/.bin/_mocha -- --reporter list test/*.js","coveralls":"npm run-script coverage && node ./node_modules/.bin/coveralls < coverage/lcov.info","jshint":"jshint --config jshint.json lib/*.js ; true","test":"_mocha -- test/*.js","unit":"mocha"},"testling":{"files":"test/*.js","harness":"mocha","browsers":["ie/9..latest","firefox/latest","chrome/latest","safari/6.0..latest","iphone/6.0..latest","android-browser/4.2..latest"]},"version":"1.4.2"}
 
 /***/ }),
 /* 427 */
@@ -80561,6 +80580,7 @@ function decode (str, LIMIT) {
   str = lowered
 
   var split = str.lastIndexOf('1')
+  if (split === -1) throw new Error('No separator character for ' + str)
   if (split === 0) throw new Error('Missing prefix for ' + str)
 
   var prefix = str.slice(0, split)
@@ -82526,7 +82546,7 @@ module.exports = exports['default'];
 /* 529 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"myhushwallet","version":"v2.1.0","description":"Secure Hush wallet online","main":"index.js","repository":"https://github.com/thetrunk/myhushwallet.git","author":"The Trunk","license":"MIT","scripts":{"start":"webpack-dev-server","watch":"webpack --watch","build":"webpack"},"dependencies":{"axios":"^0.16.2","babel-preset-env":"^1.6.0","bip32-utils":"git://github.com/TheTrunk/bip32-utils#master","bitcoinjs-lib":"git://github.com/TheTrunk/bitcoinjs-lib#master","bluebird":"^3.5.0","bootstrap":"^4.0.0-alpha.6","bs58":"^4.0.1","bs58check":"^2.0.2","classnames":"^2.2.5","css-loader":"^0.28.4","file-loader":"^0.11.2","file-saver":"^1.3.3","fs":"^0.0.1-security","hash.js":"^1.1.3","html-webpack-plugin":"^2.29.0","path":"^0.12.7","qrcode.react":"^0.7.1","react":"^15.6.1","react-addons-css-transition-group":"^15.6.0","react-addons-transition-group":"^15.6.0","react-bootstrap":"^0.31.1","react-copy-to-clipboard":"^5.0.0","react-dom":"^15.6.1","react-icons":"^2.2.5","reactstrap":"^4.8.0","react-table":"^6.5.3","style-loader":"^0.18.2","throttled-queue":"^1.0.4","webpack":"^3.3.0","webpack-dev-server":"^2.5.1","hushjs":"git://github.com/TheTrunk/hushjs#master"},"devDependencies":{"babel-core":"^6.25.0","babel-loader":"^7.1.1","babel-preset-es2015":"^6.24.1","babel-preset-react":"^6.24.1","css-loader":"^0.28.4"}}
+module.exports = {"name":"myhushwallet","version":"v2.1.0","description":"Secure Hush wallet online","main":"index.js","repository":"https://github.com/thetrunk/myhushwallet.git","author":"The Trunk","license":"MIT","scripts":{"start":"webpack-dev-server","watch":"webpack --watch","build":"webpack"},"dependencies":{"axios":"^0.16.2","babel-preset-env":"^1.6.0","bip32-utils":"git://github.com/TheTrunk/bip32-utils#master","bitcoinjs-lib":"git://github.com/TheTrunk/bitcoinjs-lib#master","bluebird":"^3.5.0","bootstrap":"^4.0.0-alpha.6","bs58":"^4.0.1","bs58check":"^2.0.2","classnames":"^2.2.5","css-loader":"^0.28.4","file-loader":"^0.11.2","file-saver":"^1.3.3","fs":"^0.0.1-security","hash.js":"^1.1.3","html-webpack-plugin":"^2.30.1","hushjs":"git://github.com/TheTrunk/hushjs#master","path":"^0.12.7","qrcode.react":"^0.7.1","react":"^15.6.1","react-addons-css-transition-group":"^15.6.0","react-addons-transition-group":"^15.6.0","react-bootstrap":"^0.31.1","react-copy-to-clipboard":"^5.0.0","react-dom":"^15.6.1","react-icons":"^2.2.5","react-table":"^6.5.3","reactstrap":"^4.8.0","style-loader":"^0.18.2","throttled-queue":"^1.0.4","webpack":"^3.3.0","webpack-dev-server":"^2.5.1"},"devDependencies":{"babel-core":"^6.25.0","babel-loader":"^7.1.1","babel-preset-es2015":"^6.24.1","babel-preset-react":"^6.24.1","css-loader":"^0.28.4"}}
 
 /***/ })
 /******/ ]);

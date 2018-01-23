@@ -119,14 +119,15 @@ class ZWalletUnlockKey extends React.Component {
     this.unlockHDWallet = this.unlockHDWallet.bind(this)
     this.loadWalletDat = this.loadWalletDat.bind(this)
     this.toggleShowPassword = this.toggleShowPassword.bind(this)
-    this.unlockPrivateKeys = this.unlockPrivateKeys.bind(this)    
+    this.unlockPrivateKeys = this.unlockPrivateKeys.bind(this)
+    this.toggleUseLimChars = this.toggleUseLimChars.bind(this)   
 
     this.state = {
       showPassword: false,
       secretPhrase: '',
       invalidPrivateKey: false,
-      secretPhraseTooShort: false,      
-
+      secretPhraseTooShort: false,
+      useLimChars: false,   
       // Style for input button
       inputFileStyle: {
           WebkitAppearance: 'button',
@@ -135,9 +136,15 @@ class ZWalletUnlockKey extends React.Component {
     }
   }  
 
+  toggleUseLimChars(){
+this.setState({
+useLimChars: !this.state.useLimChars,
+})   
+  }
+
   toggleShowPassword(){
     this.setState({
-      showPassword: !this.state.showPassword
+      showPassword: !this.state.showPassword,
     })
   }
 
@@ -223,7 +230,7 @@ class ZWalletUnlockKey extends React.Component {
                 />
               </Label>
               <FormText color="muted">
-                For Windows, it should be in %APPDATA%/Roaming/Hush<br/>
+                For Windows, it should be in %APPDATA%/Hush<br/>
                 For Mac/Linux, it should be in ~/.Hush
               </FormText>
             </Col>
@@ -254,7 +261,7 @@ class ZWalletUnlockKey extends React.Component {
         </div>
       )
     }
-
+ 
     else if (this.props.unlockType == UNLOCK_WALLET_TYPE.HD_WALLET){
       return (
         <div>
@@ -268,10 +275,15 @@ class ZWalletUnlockKey extends React.Component {
             </InputGroupButton>
             <Input
               type={this.state.showPassword ? "text" : "password"}
-              maxLength="256"
+              maxLength={this.state.useLimChars ? "64" : "256"} //"256" ZWallet
               onChange={(e) => this.setState({secretPhrase: e.target.value})}
               placeholder="Secret phrase. e.g. cash cow money heros cardboard money bag late green"
-            />                        
+            />
+            <InputGroupButton>
+              <Button id={423}
+                onClick={this.toggleUseLimChars}                
+              >{this.state.useLimChars? "64" : "256"}</Button>
+            </InputGroupButton>                     
           </InputGroup>
           <div style={{paddingTop: '8px'}}>
             <Button color="secondary" className="btn-block" onClick={this.unlockHDWallet}>Generate Wallet</Button>
@@ -324,7 +336,7 @@ class ZWalletSettings extends React.Component {
           </Row>
         </ModalBody>        
         <ModalFooter>
-          <Label>
+          <Label check>
             <Input
               disabled={!(this.props.publicAddresses === null)}
               defaultChecked={this.props.settings.useTestNet} type="checkbox" 
@@ -759,7 +771,7 @@ class ZSendHUSH extends React.Component {
               </InputGroup>
               <InputGroup>
                 <InputGroupAddon>To Address</InputGroupAddon>
-                <Input onChange={this.handleUpdateRecipientAddress} placeholder="e.g t1UDhNq2aEqvxEbPzcRM8n2QJV8YJ664rXJ" />
+                <Input onChange={this.handleUpdateRecipientAddress} placeholder="e.g t1h6kmaQwcuyejDLazT3TNZfV8EEtCzHRhc" />
               </InputGroup>
               <InputGroup>
                 <InputGroupAddon>Amount</InputGroupAddon>
@@ -767,7 +779,7 @@ class ZSendHUSH extends React.Component {
               </InputGroup>
               <InputGroup>
                 <InputGroupAddon>Fee</InputGroupAddon>
-                <Input onChange={this.handleUpdateFee} placeholder="e.g 0.001" />
+                <Input onChange={this.handleUpdateFee} placeholder="e.g 0.0001" />
               </InputGroup>
               <br/>
               <FormGroup check>
@@ -1018,8 +1030,8 @@ export default class ZWallet extends React.Component {
         useTestNet: false,
         unlockType: UNLOCK_WALLET_TYPE.HD_WALLET
       }
-    };    
-  }  
+    };  
+  } 
 
   handleUnlockPrivateKeys(){    
     if (this.state.privateKeys.length === 0){
@@ -1192,7 +1204,7 @@ export default class ZWallet extends React.Component {
               toggleShowSettings={this.toggleShowSettings}
               toggleCompressPubKey={this.toggleCompressPubKey}           
               toggleShowWalletGen={this.toggleShowWalletGen}
-              toggleUseTestNet={this.toggleUseTestNet}              
+              toggleUseTestNet={this.toggleUseTestNet}           
               setInsightAPI={this.setInsightAPI}
               settings={this.state.settings}
               publicAddresses={this.state.publicAddresses}
