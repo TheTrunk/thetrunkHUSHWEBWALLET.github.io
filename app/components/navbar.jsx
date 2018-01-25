@@ -69,16 +69,17 @@ export default class ZNavbar extends React.Component {
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className='ml-auto' navbar>
             <NavItem>
-              <NavLink className="style2" href='/faq.html'>
+              <NavLink className="style2 faq" href='/faq.html'>
                 {this.state.faq}
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink className="style2" href='/guide.html'>
+              <NavLink className="style2 gt" href='/guide.html'>
                 {this.state.guide}
               </NavLink>
             </NavItem> 
-            <UncontrolledDropdown nav inNavbar>
+              {/* 
+              <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle className="style2" nav caret>
                   LANGUAGE
                 </DropdownToggle>
@@ -95,7 +96,8 @@ export default class ZNavbar extends React.Component {
                     French
                   </DropdownItem>
                 </DropdownMenu>
-              </UncontrolledDropdown>
+              </UncontrolledDropdown> 
+              */}
             </Nav>                     
         </Collapse>
               </div> 

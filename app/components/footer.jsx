@@ -28,12 +28,12 @@ export default class ZFooter extends React.Component {
 <div className="contact-text links">     
         <Row>
           <Col md="12">
-            <p>MAKE SURE YOU ARE ON <b>WALLET.MYHUSH.ORG</b></p>
+            <p><span className="f1">MAKE SURE YOU ARE ON</span><b> WALLET.MYHUSH.ORG</b></p>
 
-            <p>Keys are validated client-side and do not leave your browser or network. You are responsible for keeping your own keys safe!!!</p>
+            <p className="f2">Keys are validated client-side and do not leave your browser or network. You are responsible for keeping your own keys safe!!!</p>
 
-            <p>Donations are always welcome!
-              <a href="http://dashboard.myhush.org/#donate"> Dashboard donation addresses</a><br/><br/>
+            <p><span className="f3">Donations are always welcome!</span>
+              <a href="http://dashboard.myhush.org/#donate"> <span className="f4">Dashboard donation addresses</span></a><br/><br/>
             </p>
           </Col>
               </Row>
@@ -50,7 +50,7 @@ export default class ZFooter extends React.Component {
 <a href="mailto:contact@myhush.org" target="_blank" data-toggle="tooltip" title="contact@myhush.org">  <FaEnvelopeO size={28}/>  </a>
     <br/>
 </div>
-    </div><br/>
+    </div>
         </Container>
       </div>
     )
